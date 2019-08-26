@@ -39,8 +39,17 @@ public class Duke {
                     }
                 }
             } else if (cmd.contains("todo")) {
-                String[] todoInputs = cmd.split(" ");
+                String[] todoInputs = cmd.split(" "); // Split the strongs by the spaces
+
                 List<String> listInputs = new ArrayList<>(Arrays.asList(todoInputs)); // Making the string into a list of strings
+                try {
+                    if (listInputs.size() == 1) {
+                        throw new DukeException("todo");
+                    }
+                } catch (DukeException error) {
+                    System.out.println(" ☹ OOPS!!! The description of a todo cannot be empty.");
+                    continue;
+                }
                 listInputs.remove(0); // Remove the first index of the string which is "todo"
                 String description = String.join(" ", listInputs); // Will return the string "borrow book"
                 ToDos newToDos = new ToDos(description); // Creating a new object
@@ -74,7 +83,11 @@ public class Duke {
                 System.out.println("Now you have " + lib.size() + " tasks in the list.");
 
             } else {
-                throw new Exception("Fo");
+                try {
+                    throw new DukeException("blah");
+                } catch (DukeException error) {
+                    System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                }
 //                Task newTask = new Task(cmd);
 //                lib.add(newTask); // Add commands into the array
 //                System.out.println("added: " + cmd);
