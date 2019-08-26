@@ -4,7 +4,7 @@ public class ToDos extends Task {
     }
 
     @Override
-    public String toString() {
-        return "[T]" + super.toString();
+    public String getDescription() {
+        return "[T]" + "[" + getStatusIcon() + "] " + super.getDescription();
     }
 }

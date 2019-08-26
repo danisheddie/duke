@@ -1,8 +1,10 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 //        String logo = " ____        _        \n"
 //                + "|  _ \\ _   _| | _____ \n"
 //                + "| | | | | | | |/ / _ \\\n"
@@ -20,7 +22,7 @@ public class Duke {
                 System.out.println("Here are the tasks in your list: ");
                 for (int i = 0; i < lib.size(); i++) {
                     System.out.print(i + 1);
-                    System.out.println(".[" + lib.get(i).getStatusIcon() + "] " + lib.get(i).getDescription());
+                    System.out.println("." + lib.get(i).getDescription());
                 }
                 // Display everything
             } else if (cmd.equals("bye")) {
@@ -28,18 +30,54 @@ public class Duke {
                 break;
             } else if (cmd.contains("done")) {
                 String[] allInputs = cmd.split(" "); // Split the input string by spaces
-                System.out.println("Nice! KI've marked this task as done: ");
+                System.out.println("Nice! I've marked this task as done: ");
                 for (String i : allInputs) {
                     if (!i.equals("done")) {
                         int index = Integer.parseInt(i) - 1; // Changing the string to integer
                         lib.get(index).tickIcon(); // Change the x to tick
-                        System.out.println("[" + lib.get(index).getStatusIcon() + "] " + lib.get(index).getDescription());
+                        System.out.println(lib.get(index).getDescription());
                     }
                 }
+            } else if (cmd.contains("todo")) {
+                String[] todoInputs = cmd.split(" ");
+                List<String> listInputs = new ArrayList<>(Arrays.asList(todoInputs)); // Making the string into a list of strings
+                listInputs.remove(0); // Remove the first index of the string which is "todo"
+                String description = String.join(" ", listInputs); // Will return the string "borrow book"
+                ToDos newToDos = new ToDos(description); // Creating a new object
+                System.out.println("Got it. I've added this task: ");
+                System.out.println("\t" + newToDos.getDescription());
+                lib.add(newToDos); // Add the new task into the list of tasktodo
+                System.out.println("Now you have " + lib.size() + " tasks in the list.");
+
+            } else if (cmd.contains("deadline")) {
+                String[] deadlineInputs = cmd.split(" ");
+                List<String> listInputs = new ArrayList<>(Arrays.asList(deadlineInputs)); // Making the string into a list of strings
+                listInputs.remove(0); // Remove the first index of the string which is "deadline"
+                String description = String.join(" ", listInputs); // Will return the string "borrow book"
+                String[] dayInput = description.split(" /by ");
+                Deadline newDeadline = new Deadline(dayInput[0], dayInput[1]); // to select the description and day
+                System.out.println("Got it. I've added this task: ");
+                System.out.println("\t" + newDeadline.getDescription());
+                lib.add(newDeadline); // Add the new task into the list of tasktodo
+                System.out.println("Now you have " + lib.size() + " tasks in the list.");
+
+            } else if (cmd.contains("event")) {
+                String[] eventInputs = cmd.split(" ");
+                List<String> listInputs = new ArrayList<>(Arrays.asList(eventInputs)); // Making the string into a list of strings
+                listInputs.remove(0); // Remove the first index of the string which is "deadline"
+                String description = String.join(" ", listInputs); // Will return the string "borrow book"
+                String[] dayInput = description.split(" /at ");
+                Events newEvent = new Events(dayInput[0], dayInput[1]); // to select the description and day
+                System.out.println("Got it. I've added this task: ");
+                System.out.println("\t" + newEvent.getDescription());
+                lib.add(newEvent); // Add the new task into the list of tasktodo
+                System.out.println("Now you have " + lib.size() + " tasks in the list.");
+
             } else {
-                Task newTask = new Task(cmd);
-                lib.add(newTask); // Add commands into the array
-                System.out.println("added: " + cmd);
+                throw new Exception("Fo");
+//                Task newTask = new Task(cmd);
+//                lib.add(newTask); // Add commands into the array
+//                System.out.println("added: " + cmd);
             }
 
         }

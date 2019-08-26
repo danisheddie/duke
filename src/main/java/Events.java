@@ -1,15 +1,13 @@
 public class Events extends Task {
     protected String day;
-    protected String time;
 
-    public Events(String description, String day, String time) {
+    public Events(String description, String day) {
         super(description);
         this.day = day;
-        this.time = time;
     }
 
     @Override
-    public String toString() {
-        return "[E]" + super.toString() + " (at: " + day + time + ")";
+    public String getDescription() {
+        return "[E]" + "[" + getStatusIcon() + "] " + super.getDescription() + " (at: " + day + ")";
     }
 }
