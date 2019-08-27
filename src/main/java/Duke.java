@@ -1,7 +1,4 @@
-import model.Deadline;
-import model.Events;
-import model.Task;
-import model.ToDos;
+import model.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -76,7 +73,8 @@ public class Duke {
                 listInputs.remove(0); // Remove the first index of the string which is "deadline"
                 String description = String.join(" ", listInputs); // Will return the string "borrow book"
                 String[] dayInput = description.split(" /by ");
-                Deadline newDeadline = new Deadline(dayInput[0], dayInput[1]); // to select the description and day
+
+                Deadline newDeadline = new Deadline(dayInput[0], new DateTime().formatDateTime(dayInput[1])); // to select the description and day
                 System.out.println("Got it. I've added this task: ");
                 System.out.println("\t" + newDeadline.getDescription());
                 lib.add(newDeadline); // Add the new task into the list of tasktodo
@@ -89,7 +87,7 @@ public class Duke {
                 listInputs.remove(0); // Remove the first index of the string which is "deadline"
                 String description = String.join(" ", listInputs); // Join back the list of strings. Will return the string "borrow book"
                 String[] dayInput = description.split(" /at ");
-                Events newEvent = new Events(dayInput[0], dayInput[1]); // to select the description and day
+                Events newEvent = new Events(dayInput[0], new DateTime().formatDateTime(dayInput[1])); // to select the description and day
                 System.out.println("Got it. I've added this task: ");
                 System.out.println("\t" + newEvent.getDescription());
                 lib.add(newEvent); // Add the new task into the list of tasktodo
@@ -108,6 +106,7 @@ public class Duke {
         }
     }
 
+    // The function to save all the task into the textfile
     public static void saveToFile(ArrayList<Task> taskList) {
         File file = new File("C:\\Users\\Dell\\Desktop\\duke\\dataTask.txt");
         try {
@@ -120,6 +119,7 @@ public class Duke {
             System.out.print("ERROR: Not Available");
         }
     }
+
 
 }
 

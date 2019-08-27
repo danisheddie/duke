@@ -3,6 +3,8 @@ package model;
 public class Task {
     private String description;
     protected boolean isDone;
+    private String date = "";
+
 
     public Task(String description) { // This is a constructor
         this.description = description;
@@ -25,5 +27,9 @@ public class Task {
     public String getDescription() {
 
         return description;
+    }
+
+    public String getDate() {
+        return date;
     }
 }
