@@ -38,7 +38,7 @@ public class Duke {
                         System.out.println(lib.get(index).getDescription());
                     }
                 }
-            } else if (cmd.contains("todo")) {
+            } else if (cmd.contains("todo")) { // If cmd contains todo
                 String[] todoInputs = cmd.split(" "); // Split the strongs by the spaces
 
                 List<String> listInputs = new ArrayList<>(Arrays.asList(todoInputs)); // Making the string into a list of strings
@@ -58,7 +58,7 @@ public class Duke {
                 lib.add(newToDos); // Add the new task into the list of tasktodo
                 System.out.println("Now you have " + lib.size() + " tasks in the list.");
 
-            } else if (cmd.contains("deadline")) {
+            } else if (cmd.contains("deadline")) { // IF cmd contains deadline
                 String[] deadlineInputs = cmd.split(" ");
                 List<String> listInputs = new ArrayList<>(Arrays.asList(deadlineInputs)); // Making the string into a list of strings
                 listInputs.remove(0); // Remove the first index of the string which is "deadline"
@@ -70,11 +70,11 @@ public class Duke {
                 lib.add(newDeadline); // Add the new task into the list of tasktodo
                 System.out.println("Now you have " + lib.size() + " tasks in the list.");
 
-            } else if (cmd.contains("event")) {
-                String[] eventInputs = cmd.split(" ");
-                List<String> listInputs = new ArrayList<>(Arrays.asList(eventInputs)); // Making the string into a list of strings
+            } else if (cmd.contains("event")) { // If cmd contains event
+                String[] eventInputs = cmd.split(" "); // Split all the string by spaces
+                List<String> listInputs = new ArrayList<>(Arrays.asList(eventInputs)); // Making the string into a LIST of strings
                 listInputs.remove(0); // Remove the first index of the string which is "deadline"
-                String description = String.join(" ", listInputs); // Will return the string "borrow book"
+                String description = String.join(" ", listInputs); // Join back the list of strings. Will return the string "borrow book"
                 String[] dayInput = description.split(" /at ");
                 Events newEvent = new Events(dayInput[0], dayInput[1]); // to select the description and day
                 System.out.println("Got it. I've added this task: ");
@@ -84,7 +84,8 @@ public class Duke {
 
             } else {
                 try {
-                    throw new DukeException("blah");
+                    if (!cmd.matches("todo|deadlines|task|list|event"))
+                        throw new DukeException(cmd);
                 } catch (DukeException error) {
                     System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
