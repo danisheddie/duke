@@ -1,3 +1,5 @@
+package model;
+
 public class Events extends Task {
     protected String day;
 
@@ -9,5 +11,10 @@ public class Events extends Task {
     @Override
     public String getDescription() {
         return "[E]" + "[" + getStatusIcon() + "] " + super.getDescription() + " (at: " + day + ")";
+    }
+
+    @Override
+    public String getFormat() {
+        return "E | " + isDone + " | " + super.getDescription() + day;
     }
 }

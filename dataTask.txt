@@ -1,0 +1,2 @@
+T | true | buy book
+T | false | buy bread

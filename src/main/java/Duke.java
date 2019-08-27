@@ -1,3 +1,11 @@
+import model.Deadline;
+import model.Events;
+import model.Task;
+import model.ToDos;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +23,7 @@ public class Duke {
         System.out.println("What can I do for you");
         ArrayList<Task> lib = new ArrayList<Task>(); // Store command in array
         Scanner sc = new Scanner(System.in); // To read input
+
 
         while (true) {
             String cmd = sc.nextLine(); // Will go next line after sending command
@@ -36,6 +45,7 @@ public class Duke {
                         int index = Integer.parseInt(i) - 1; // Changing the string to integer
                         lib.get(index).tickIcon(); // Change the x to tick
                         System.out.println(lib.get(index).getDescription());
+                        saveToFile(lib);
                     }
                 }
             } else if (cmd.contains("todo")) { // If cmd contains todo
@@ -56,7 +66,9 @@ public class Duke {
                 System.out.println("Got it. I've added this task: ");
                 System.out.println("\t" + newToDos.getDescription());
                 lib.add(newToDos); // Add the new task into the list of tasktodo
+                saveToFile(lib);
                 System.out.println("Now you have " + lib.size() + " tasks in the list.");
+
 
             } else if (cmd.contains("deadline")) { // IF cmd contains deadline
                 String[] deadlineInputs = cmd.split(" ");
@@ -68,6 +80,7 @@ public class Duke {
                 System.out.println("Got it. I've added this task: ");
                 System.out.println("\t" + newDeadline.getDescription());
                 lib.add(newDeadline); // Add the new task into the list of tasktodo
+                saveToFile(lib);
                 System.out.println("Now you have " + lib.size() + " tasks in the list.");
 
             } else if (cmd.contains("event")) { // If cmd contains event
@@ -80,6 +93,7 @@ public class Duke {
                 System.out.println("Got it. I've added this task: ");
                 System.out.println("\t" + newEvent.getDescription());
                 lib.add(newEvent); // Add the new task into the list of tasktodo
+                saveToFile(lib);
                 System.out.println("Now you have " + lib.size() + " tasks in the list.");
 
             } else {
@@ -89,11 +103,23 @@ public class Duke {
                 } catch (DukeException error) {
                     System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
-//                Task newTask = new Task(cmd);
-//                lib.add(newTask); // Add commands into the array
-//                System.out.println("added: " + cmd);
             }
 
         }
     }
+
+    public static void saveToFile(ArrayList<Task> taskList) {
+        File file = new File("C:\\Users\\Dell\\Desktop\\duke\\dataTask.txt");
+        try {
+            PrintWriter output = new PrintWriter(file);
+            for (Task x : taskList) {
+                output.println(x.getFormat());
+            }
+            output.close();
+        } catch (IOException ex) {
+            System.out.print("ERROR: Not Available");
+        }
+    }
+
 }
+

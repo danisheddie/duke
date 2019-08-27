@@ -1,6 +1,8 @@
+package model;
+
 public class Task {
     private String description;
-    private boolean isDone;
+    protected boolean isDone;
 
     public Task(String description) { // This is a constructor
         this.description = description;
@@ -14,6 +16,10 @@ public class Task {
 
     public void tickIcon() {
         isDone = true;
+    }
+
+    public String getFormat() {
+        return "x";
     }
 
     public String getDescription() {
