@@ -9,13 +9,13 @@ import java.util.Date;
 public class DateTime {
 
     public String formatDateTime(String date) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy HHmm");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HHmm");
         Date newDate = new Date();
 
         try {
             newDate = sdf.parse(date);
         } catch (ParseException e) {
-            System.out.println(e.getMessage());
+            return date;
         }
 
 

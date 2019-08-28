@@ -87,6 +87,7 @@ public class Duke {
                 listInputs.remove(0); // Remove the first index of the string which is "deadline"
                 String description = String.join(" ", listInputs); // Join back the list of strings. Will return the string "borrow book"
                 String[] dayInput = description.split(" /at ");
+//                if (dayInput.le() > 1)
                 Events newEvent = new Events(dayInput[0], new DateTime().formatDateTime(dayInput[1])); // to select the description and day
                 System.out.println("Got it. I've added this task: ");
                 System.out.println("\t" + newEvent.getDescription());
@@ -108,7 +109,7 @@ public class Duke {
 
     // The function to save all the task into the textfile
     public static void saveToFile(ArrayList<Task> taskList) {
-        File file = new File("C:\\Users\\Dell\\Desktop\\duke\\dataTask.txt");
+        File file = new File("C:\\Users\\Dell\\Desktop\\duke\\dataTask.txt"); // Creating the textfile
         try {
             PrintWriter output = new PrintWriter(file);
             for (Task x : taskList) {
