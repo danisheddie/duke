@@ -8,8 +8,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class Duke {
     public static void main(String[] args) throws Exception {
+
 //        String logo = " ____        _        \n"
 //                + "|  _ \\ _   _| | _____ \n"
 //                + "| | | | | | | |/ / _ \\\n"
@@ -34,6 +36,7 @@ public class Duke {
             } else if (cmd.equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
                 break;
+
             } else if (cmd.contains("done")) {
                 String[] allInputs = cmd.split(" "); // Split the input string by spaces
                 System.out.println("Nice! I've marked this task as done: ");
@@ -45,6 +48,7 @@ public class Duke {
                         saveToFile(lib);
                     }
                 }
+
             } else if (cmd.contains("todo")) { // If cmd contains todo
                 String[] todoInputs = cmd.split(" "); // Split the strongs by the spaces
 
@@ -57,6 +61,7 @@ public class Duke {
                     System.out.println(" ☹ OOPS!!! The description of a todo cannot be empty.");
                     continue;
                 }
+
                 listInputs.remove(0); // Remove the first index of the string which is "todo"
                 String description = String.join(" ", listInputs); // Will return the string "borrow book"
                 ToDos newToDos = new ToDos(description); // Creating a new object
@@ -94,6 +99,22 @@ public class Duke {
                 lib.add(newEvent); // Add the new task into the list of tasktodo
                 saveToFile(lib);
                 System.out.println("Now you have " + lib.size() + " tasks in the list.");
+
+            } else if (cmd.contains("delete")) {
+                // Add code here
+                String[] allInputs = cmd.split(" "); // Split the input string by spaces
+                System.out.println("Noted. I've removed this task: ");
+                for (String i : allInputs) {
+                    if (!i.equals("delete")) {
+                        int index = Integer.parseInt(i) - 1; // Changing the string to integer
+                        lib.get(index).tickIcon(); // Change the x to tick
+                        System.out.println("\t" + lib.get(index).getDescription());
+                        lib.remove(index);
+                        System.out.println("Now you have " + lib.size() + " task in the list.");
+                        saveToFile(lib);
+                    }
+                }
+
 
             } else {
                 try {
