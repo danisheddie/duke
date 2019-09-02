@@ -115,6 +115,19 @@ public class Duke {
                     }
                 }
 
+            } else if (cmd.startsWith("find")) {
+                String findWord = cmd.substring(5); // The word start from index 5 of the cmd
+                ArrayList<Task> search = new ArrayList<>();
+                for (Task i : lib) {
+                    if (i.getDescription().contains(findWord)) {
+                        search.add(i);
+                    }
+                }
+                System.out.println("Here are the matching task in your list: ");
+                for (int i = 0; i < search.size(); i++) {
+                    System.out.print(i + 1);
+                    System.out.println("." + search.get(i).getDescription());
+                }
 
             } else {
                 try {

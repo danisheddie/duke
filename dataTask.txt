@@ -1,2 +1,6 @@
-E | true | OP109/09/2019
-E | false | op222nd of December 2019, 1.45pm
+T | false | buy book
+T | true | return book
+T | false | buy bread
+T | false | eat bread
+T | false | sleep now
+T | false | read book
