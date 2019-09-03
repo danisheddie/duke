@@ -5,7 +5,6 @@ public class Task {
     protected boolean isDone;
     private String date = "";
 
-
     public Task(String description) { // This is a constructor
         this.description = description;
         this.isDone = false;

@@ -1,4 +1,10 @@
-import model.*;
+import Exceptions.DukeException;
+import Parser.DateTime;
+import Storage.Storage;
+import model.Deadline;
+import model.Events;
+import model.Task;
+import model.ToDos;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,11 +14,10 @@ import java.util.Scanner;
 
 public class Duke {
     public static void main(String[] args) throws Exception {
-
 //        String logo = " ____        _        \n"
 //                + "|  _ \\ _   _| | _____ \n"
-//                + "| | | | | | | |/ / _ \\\n"
 //                + "| |_| | |_| |   <  __/\n"
+//                + "| | | | | | | |/ / _ \\\n"
 //                + "|____/ \\__,_|_|\\_\\___|\n";
 //        System.out.println("Hello from\n" + logo);
         System.out.println("Hello! I'm Duke");
@@ -78,7 +83,6 @@ public class Duke {
                 listInputs.remove(0); // Remove the first index of the string which is "deadline"
                 String description = String.join(" ", listInputs); // Will return the string "borrow book"
                 String[] dayInput = description.split(" /by ");
-
                 Deadline newDeadline = new Deadline(dayInput[0], new DateTime().formatDateTime(dayInput[1])); // to select the description and day
                 System.out.println("Got it. I've added this task: ");
                 System.out.println("\t" + newDeadline.getDescription());
@@ -92,7 +96,6 @@ public class Duke {
                 listInputs.remove(0); // Remove the first index of the string which is "deadline"
                 String description = String.join(" ", listInputs); // Join back the list of strings. Will return the string "borrow book"
                 String[] dayInput = description.split(" /at ");
-//                if (dayInput.le() > 1)
                 Events newEvent = new Events(dayInput[0], new DateTime().formatDateTime(dayInput[1])); // to select the description and day
                 System.out.println("Got it. I've added this task: ");
                 System.out.println("\t" + newEvent.getDescription());
@@ -140,18 +143,4 @@ public class Duke {
 
         }
     }
-
-    // The function to save all the task into the textfile
-//    public static void saveToFile(ArrayList<Task> taskList) {
-//        File file = new File("C:\\Users\\Dell\\Desktop\\duke\\dataTask.txt"); // Creating the textfile
-//        try {
-//            PrintWriter output = new PrintWriter(file);
-//            for (Task x : taskList) {
-//                output.println(x.getFormat());
-//            }
-//            output.close();
-//        } catch (IOException ex) {
-//            System.out.print("ERROR: Not Available");
-//        }
-//    }
 }

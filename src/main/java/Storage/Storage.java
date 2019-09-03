@@ -1,4 +1,9 @@
-package model;
+package Storage;
+
+import model.Deadline;
+import model.Events;
+import model.Task;
+import model.ToDos;
 
 import java.io.*;
 import java.util.ArrayList;
