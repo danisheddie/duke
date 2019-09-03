@@ -1,1 +1,1 @@
-T | false | buy food
+T | true | buy book
