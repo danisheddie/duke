@@ -1,8 +1,5 @@
 import model.*;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,6 +19,9 @@ public class Duke {
         System.out.println("What can I do for you");
         ArrayList<Task> lib = new ArrayList<Task>(); // Store command in array
         Scanner sc = new Scanner(System.in); // To read input
+        Storage save = new Storage(lib);
+        Storage read = new Storage(lib);
+        read.ReadFile(lib);
 
 
         while (true) {
@@ -45,7 +45,7 @@ public class Duke {
                         int index = Integer.parseInt(i) - 1; // Changing the string to integer
                         lib.get(index).tickIcon(); // Change the x to tick
                         System.out.println(lib.get(index).getDescription());
-                        saveToFile(lib);
+                        save.saveToFile(lib);
                     }
                 }
 
@@ -68,7 +68,7 @@ public class Duke {
                 System.out.println("Got it. I've added this task: ");
                 System.out.println("\t" + newToDos.getDescription());
                 lib.add(newToDos); // Add the new task into the list of tasktodo
-                saveToFile(lib);
+                save.saveToFile(lib);
                 System.out.println("Now you have " + lib.size() + " tasks in the list.");
 
 
@@ -83,7 +83,7 @@ public class Duke {
                 System.out.println("Got it. I've added this task: ");
                 System.out.println("\t" + newDeadline.getDescription());
                 lib.add(newDeadline); // Add the new task into the list of tasktodo
-                saveToFile(lib);
+                save.saveToFile(lib);
                 System.out.println("Now you have " + lib.size() + " tasks in the list.");
 
             } else if (cmd.contains("event")) { // If cmd contains event
@@ -97,7 +97,7 @@ public class Duke {
                 System.out.println("Got it. I've added this task: ");
                 System.out.println("\t" + newEvent.getDescription());
                 lib.add(newEvent); // Add the new task into the list of tasktodo
-                saveToFile(lib);
+                save.saveToFile(lib);
                 System.out.println("Now you have " + lib.size() + " tasks in the list.");
 
             } else if (cmd.contains("delete")) {
@@ -107,11 +107,11 @@ public class Duke {
                 for (String i : allInputs) {
                     if (!i.equals("delete")) {
                         int index = Integer.parseInt(i) - 1; // Changing the string to integer
-                        lib.get(index).tickIcon(); // Change the x to tick
+//                        lib.get(index).tickIcon(); // Change the x to tick
                         System.out.println("\t" + lib.get(index).getDescription());
                         lib.remove(index);
                         System.out.println("Now you have " + lib.size() + " task in the list.");
-                        saveToFile(lib);
+                        save.saveToFile(lib);
                     }
                 }
 
@@ -142,19 +142,16 @@ public class Duke {
     }
 
     // The function to save all the task into the textfile
-    public static void saveToFile(ArrayList<Task> taskList) {
-        File file = new File("C:\\Users\\Dell\\Desktop\\duke\\dataTask.txt"); // Creating the textfile
-        try {
-            PrintWriter output = new PrintWriter(file);
-            for (Task x : taskList) {
-                output.println(x.getFormat());
-            }
-            output.close();
-        } catch (IOException ex) {
-            System.out.print("ERROR: Not Available");
-        }
-    }
-
-
+//    public static void saveToFile(ArrayList<Task> taskList) {
+//        File file = new File("C:\\Users\\Dell\\Desktop\\duke\\dataTask.txt"); // Creating the textfile
+//        try {
+//            PrintWriter output = new PrintWriter(file);
+//            for (Task x : taskList) {
+//                output.println(x.getFormat());
+//            }
+//            output.close();
+//        } catch (IOException ex) {
+//            System.out.print("ERROR: Not Available");
+//        }
+//    }
 }
-

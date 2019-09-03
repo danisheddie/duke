@@ -14,6 +14,6 @@ public class Deadline extends Task {
     }
 
     public String getFormat() {
-        return "D | " + isDone + " | " + super.getDescription() + by;
+        return "D | " + isDone + " | " + super.getDescription() + " | " + by;
     }
 }

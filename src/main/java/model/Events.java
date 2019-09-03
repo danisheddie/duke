@@ -15,6 +15,6 @@ public class Events extends Task {
 
     @Override
     public String getFormat() {
-        return "E | " + isDone + " | " + super.getDescription() + day;
+        return "E | " + isDone + " | " + super.getDescription() + " | " + day;
     }
 }
