@@ -1,6 +1,7 @@
 import Exceptions.DukeException;
 import Parser.DateTime;
 import Storage.Storage;
+import Ui.Ui;
 import model.Deadline;
 import model.Events;
 import model.Task;
@@ -13,15 +14,10 @@ import java.util.Scanner;
 
 
 public class Duke {
+    private Ui ui;
     public static void main(String[] args) throws Exception {
-//        String logo = " ____        _        \n"
-//                + "|  _ \\ _   _| | _____ \n"
-//                + "| |_| | |_| |   <  __/\n"
-//                + "| | | | | | | |/ / _ \\\n"
-//                + "|____/ \\__,_|_|\\_\\___|\n";
-//        System.out.println("Hello from\n" + logo);
-        System.out.println("Hello! I'm Duke");
-        System.out.println("What can I do for you");
+        Ui ui = new Ui();
+        ui.start(); // Start message
         ArrayList<Task> lib = new ArrayList<Task>(); // Store command in array
         Scanner sc = new Scanner(System.in); // To read input
         Storage save = new Storage(lib);
