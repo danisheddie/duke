@@ -1,9 +1,10 @@
 package model;
 
+// Task contains the behavious to getStatusicon, tickIcon, getFormat, getDescription
 public class Task {
     private String description;
     protected boolean isDone;
-    private String date = "";
+//    private String date = "";
 
     public Task(String description) { // This is a constructor
         this.description = description;
@@ -11,7 +12,6 @@ public class Task {
     }
 
     public String getStatusIcon() {
-
         return (isDone ? "✓" : "✘"); //return tick or X symbols
     }
 
@@ -24,11 +24,10 @@ public class Task {
     }
 
     public String getDescription() {
-
         return description;
     }
 
-    public String getDate() {
-        return date;
-    }
+//    public String getDate() {
+//        return date;
+//    }
 }

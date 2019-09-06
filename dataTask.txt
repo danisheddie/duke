@@ -1,4 +1,7 @@
-T | false | read book
-T | false | buy bread
+T | false | test
 T | false | borrow book
-T | false | study
+D | false | op | 12th of December 2019, 6pm
+E | false | op2 | 14th of November 2019, 6pm
+T | false | buy bread
+D | false | jdfj | 12/12/2019
+E | false | jdsfkn | 12th of December 2019, 6pm
