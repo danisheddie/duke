@@ -33,12 +33,8 @@ public class Ui {
         System.out.println(lines);
     }
 
-    public void run() {
-        TaskList taskList = new TaskList();
-        Scanner sc = new Scanner(System.in); // To read input
-        Storage save = new Storage(taskList.getTaskList());
-        Storage read = new Storage(taskList.getTaskList());
-        read.ReadFile(taskList.getTaskList());
+    public void run(TaskList taskList, Scanner sc, Storage save) {
+
         boolean isExit = true;
 
         while (isExit) {
@@ -47,6 +43,11 @@ public class Ui {
             List<String> listInputs;
             String description;
             String[] dayInput;
+
+            String[] Inputs = cmd.split(" "); // Split the strongs by the spaces
+            listInputs = new ArrayList<>(Arrays.asList(Inputs)); // Making the string into a list of strings
+            listInputs.remove(0); // Remove the first index of the string which is "todo"
+            description = String.join(" ", listInputs); // Will return the string "borrow book"
 
             switch (splitString[0]) {
 
@@ -71,9 +72,6 @@ public class Ui {
                     break;
 
                 case "todo":
-                    String[] todoInputs = cmd.split(" "); // Split the strongs by the spaces
-
-                    listInputs = new ArrayList<>(Arrays.asList(todoInputs)); // Making the string into a list of strings
                     try {
                         if (listInputs.size() == 1) {
                             throw new DukeException("todo");
@@ -83,8 +81,6 @@ public class Ui {
                         continue;
                     }
 
-                    listInputs.remove(0); // Remove the first index of the string which is "todo"
-                    description = String.join(" ", listInputs); // Will return the string "borrow book"
                     ToDos newToDos = new ToDos(description); // Creating a new object
                     System.out.println("Got it. I've added this task: ");
                     System.out.println("\t" + newToDos.getDescription());
@@ -92,12 +88,7 @@ public class Ui {
                     System.out.println("Now you have " + taskList.getTaskListSize() + " tasks in the list.");
                     break;
 
-
                 case "deadline":
-                    String[] deadlineInputs = cmd.split(" ");
-                    listInputs = new ArrayList<>(Arrays.asList(deadlineInputs)); // Making the string into a list of strings
-                    listInputs.remove(0); // Remove the first index of the string which is "deadline"
-                    description = String.join(" ", listInputs); // Will return the string "borrow book"
                     dayInput = description.split(" /by ");
                     Deadline newDeadline = new Deadline(dayInput[0], new DateTime().formatDateTime(dayInput[1])); // to select the description and day
                     System.out.println("Got it. I've added this task: ");
@@ -107,10 +98,6 @@ public class Ui {
                     break;
 
                 case "event":
-                    String[] eventInputs = cmd.split(" "); // Split all the string by spaces
-                    listInputs = new ArrayList<>(Arrays.asList(eventInputs)); // Making the string into a LIST of strings
-                    listInputs.remove(0); // Remove the first index of the string which is "deadline"
-                    description = String.join(" ", listInputs); // Join back the list of strings. Will return the string "borrow book"
                     dayInput = description.split(" /at ");
                     Events newEvent = new Events(dayInput[0], new DateTime().formatDateTime(dayInput[1])); // to select the description and day
                     System.out.println("Got it. I've added this task: ");
