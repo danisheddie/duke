@@ -1,7 +1,4 @@
-T | false | test
-T | false | borrow book
-D | false | op | 12th of December 2019, 6pm
-E | false | op2 | 14th of November 2019, 6pm
-T | false | buy bread
-D | false | jdfj | 12/12/2019
-E | false | jdsfkn | 12th of December 2019, 6pm
+T | true | buy phone
+E | false | OP1 | 12th of November 2018, 1pm
+D | false | project 2 | 4th of December 2019, 11.59pm
+T | true | buy break

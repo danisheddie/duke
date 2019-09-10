@@ -3,7 +3,7 @@ package model;
 // Task contains the behavious to getStatusicon, tickIcon, getFormat, getDescription
 public class Task {
     private String description;
-    protected boolean isDone;
+    public boolean isDone;
 //    private String date = "";
 
     public Task(String description) { // This is a constructor

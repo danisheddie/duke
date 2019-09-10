@@ -34,14 +34,11 @@ public class Ui {
     }
 
     public void run() {
-//        ArrayList<Task> lib = new ArrayList<>(); // Store command in array
         TaskList taskList = new TaskList();
-        taskList.addToTask(new ToDos("test"));
         Scanner sc = new Scanner(System.in); // To read input
         Storage save = new Storage(taskList.getTaskList());
         Storage read = new Storage(taskList.getTaskList());
         read.ReadFile(taskList.getTaskList());
-//        ListCmd list = new ListCmd();
         boolean isExit = true;
 
         while (isExit) {
@@ -54,11 +51,10 @@ public class Ui {
             switch (splitString[0]) {
 
                 case "list":
-//            if (splitString[0].equals("list")) { // Will print out all the command that is in the array
                     System.out.println("Here are the tasks in your list: ");
-                    for (int i = 0; i < taskList.getTaskList().size(); i++) {
+                    for (int i = 0; i < taskList.getTaskListSize(); i++) {
                         System.out.print(i + 1);
-                        System.out.println("." + taskList.getTaskList().get(i).getDescription());
+                        System.out.println("." + taskList.getTask(i).getDescription());
                     }
                     break;
 
@@ -70,7 +66,6 @@ public class Ui {
                             int index = Integer.parseInt(i) - 1; // Changing the string to integer
                             taskList.getTaskList().get(index).tickIcon(); // Change the x to tick
                             System.out.println(taskList.getTaskList().get(index).getDescription());
-                            save.saveToFile(taskList.getTaskList());
                         }
                     }
                     break;
@@ -94,7 +89,6 @@ public class Ui {
                     System.out.println("Got it. I've added this task: ");
                     System.out.println("\t" + newToDos.getDescription());
                     taskList.getTaskList().add(newToDos); // Add the new task into the list of tasktodo
-                    save.saveToFile(taskList.getTaskList());
                     System.out.println("Now you have " + taskList.getTaskListSize() + " tasks in the list.");
                     break;
 
@@ -109,7 +103,6 @@ public class Ui {
                     System.out.println("Got it. I've added this task: ");
                     System.out.println("\t" + newDeadline.getDescription());
                     taskList.getTaskList().add(newDeadline); // Add the new task into the list of tasktodo
-                    save.saveToFile(taskList.getTaskList());
                     System.out.println("Now you have " + taskList.getTaskList().size() + " tasks in the list.");
                     break;
 
@@ -123,7 +116,6 @@ public class Ui {
                     System.out.println("Got it. I've added this task: ");
                     System.out.println("\t" + newEvent.getDescription());
                     taskList.addToTask(newEvent); // Add the new task into the list of tasktodo
-                    save.saveToFile(taskList.getTaskList());
                     System.out.println("Now you have " + taskList.getTaskListSize() + " tasks in the list.");
                     break;
 
@@ -144,17 +136,14 @@ public class Ui {
                     break;
 
                 case "delete":
-                    // Add code here
                     allInputs = cmd.split(" "); // Split the input string by spaces
                     System.out.println("Noted. I've removed this task: ");
                     for (String i : allInputs) {
                         if (!i.equals("delete")) {
                             int index = Integer.parseInt(i); // Changing the string to integer
-                            //                        lib.get(index).tickIcon(); // Change the x to tick
-                            System.out.println("\t" + taskList.getTaskList().get(index).getDescription());
+                            System.out.println("\t" + taskList.getTaskList().get(index - 1).getDescription());
                             taskList.deleteTaskList(index);
                             System.out.println("Now you have " + taskList.getTaskListSize() + " task in the list.");
-                            save.saveToFile(taskList.getTaskList());
                         }
                     }
                     break;
@@ -173,8 +162,9 @@ public class Ui {
                     }
                     break;
             }
+            // Save the input to text file
+            save.saveToFile(taskList.getTaskList());
         }
     }
-
 
 }

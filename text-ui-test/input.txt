@@ -1,1 +1,15 @@
+list
+todo buy book
+find book
+done 5
+delete 5
+event birthday /at 09/09/2019 1200
+done 5
+delete 5
+deadline slides /by 03/12/2019 2359
+done 5
+find buy
+list
+done 1
+delete 5
 bye
