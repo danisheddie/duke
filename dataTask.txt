@@ -1,4 +1,5 @@
 T | true | buy phone
 E | false | OP1 | 12th of November 2018, 1pm
 D | false | project 2 | 4th of December 2019, 11.59pm
-T | true | buy break
+T | false | buy book
+E | false | party | 12th of December 2018, 12pm
