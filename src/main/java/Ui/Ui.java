@@ -1,6 +1,7 @@
 package Ui;
 
 //import Commands.ListCmd;
+import Commands.ListCmd;
 import Exceptions.DukeException;
 import Parser.DateTime;
 import Storage.Storage;
@@ -52,11 +53,7 @@ public class Ui {
             switch (splitString[0]) {
 
                 case "list":
-                    System.out.println("Here are the tasks in your list: ");
-                    for (int i = 0; i < taskList.getTaskListSize(); i++) {
-                        System.out.print(i + 1);
-                        System.out.println("." + taskList.getTask(i).getDescription());
-                    }
+                    new ListCmd(taskList).execute();
                     break;
 
                 case "done":
