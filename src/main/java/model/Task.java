@@ -17,7 +17,7 @@ public class Task {
 
     /**
      * This is the constructor to initialise description and whether the task is done
-     * @param description
+     * @param description of the task
      */
     public Task(String description) { // This is a constructor
         this.description = description;
